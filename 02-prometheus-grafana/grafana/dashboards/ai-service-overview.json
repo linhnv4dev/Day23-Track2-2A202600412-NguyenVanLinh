@@ -49,11 +49,11 @@
       }}
     },
     {
-      "type": "gauge", "title": "GPU Utilization",
+      "type": "gauge", "title": "AI Quality Score",
       "id": 4, "gridPos": {"x": 6, "y": 8, "w": 6, "h": 6},
       "datasource": {"type": "prometheus", "uid": "prometheus"},
-      "targets": [{"expr": "gpu_utilization_percent", "refId": "A"}],
-      "fieldConfig": {"defaults": {"unit": "percent", "min": 0, "max": 100}}
+      "targets": [{"expr": "avg(inference_quality_score)", "refId": "A"}],
+      "fieldConfig": {"defaults": {"unit": "short", "min": 0, "max": 1}}
     },
     {
       "type": "timeseries", "title": "Token Throughput (in/out per sec)",

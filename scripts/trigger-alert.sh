@@ -4,6 +4,8 @@
 
 set -euo pipefail
 
+HOLD_FOR_SCREENSHOT=${HOLD_FOR_SCREENSHOT:-0}
+
 echo "Step 1: kill app container"
 docker stop day23-app >/dev/null
 
@@ -17,6 +19,12 @@ for i in {1..18}; do
   fi
   echo "  no alert yet (${i}*5s)"
 done
+
+if [ "$HOLD_FOR_SCREENSHOT" = "1" ]; then
+  echo "Alert is firing. Capture Alertmanager and Slack screenshots now."
+  echo "When done, run: docker start day23-app"
+  exit 0
+fi
 
 echo "Step 3: restart app"
 docker start day23-app >/dev/null
